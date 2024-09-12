@@ -1,0 +1,26 @@
+button{
+    color: white;
+    background-color: olivedrab;
+    width: 100px;
+    height: 50px;
+}
+html{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+}
+h2{
+    color: darkolivegreen;
+}
+p{
+    font-weight: bold;
+    font-style: italic;
+}
+input{
+    width: 100px;
+    height: 50px;
+}
+#cuentaRegresiva{
+    border: 1px;
+    border-color: red;
+    border-style: solid;
+    color: red;
+}

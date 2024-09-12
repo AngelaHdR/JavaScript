@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        audio::-webkit-media-control-panel{
+            background-color: coral;
+    }
+    </style>
+    <title>Saludo</title>
+    <link rel="stylesheet" href="misEstilos.css">
+</head>
+<body onload="comenzarReloj()">
+    <p>Ingresa tu nombre</p>
+    <input type="text" id="nombreUsuario">
+    <button onclick="saludar()">Saludar</button>
+    <h1 id="titulo">No se como te llamas</h1>
+    <br>
+    <p>Ingresa un tiempo</p>
+    <input type="text" id="tiempoAlarma">
+    <button onclick="comenzarTiempo()">Alarma</button>
+    <h1 id="estadoAlarma" style="color:red">APAGADO</h1>
+    <audio id="audioAlarma" >
+    <source src="Audios/alarma.mp3" type="audio/mpeg">Sonido no habilitado</audio>
+    <br>
+    <h1 id="textoAlarma">00:00:00</h1>
+    <script>
+        let nombre = document.getElementById("nombreUsuario");
+        let textoTitulo = document.getElementById("titulo");
+
+        let elementoTiempo = document.getElementById("tiempoAlarma");
+        let elementoEstado = document.getElementById("estadoAlarma");
+        let audioAlarma = document.getElementById("audioAlarma");
+        function saludar(){
+            textoTitulo.textContent = "Te llamas " + nombre.value;
+        }
+        function comenzarTiempo(){
+            setTimeout(tiempoCumplido,1000*elementoTiempo.value);
+        }
+        function tiempoCumplido(){
+            elementoEstado.style.color="green";
+            elementoEstado.textContent="ENCENDIDO";
+            audioAlarma.play();
+        }
+        function comenzarReloj(){
+            setInterval(ticTac,1000);
+        }
+        function ticTac(){
+            let tiempoActual = new Date();
+            //alert(tiempoActual.toLocaleDateString("es-ES"));
+            let hora = tiempoActual.getHours();
+            let minutos = tiempoActual.getMinutes();
+            let segundos = String(tiempoActual.getSeconds()).padStart(2,0);
+            let textoHora = hora + ":"+minutos+":"+segundos;
+            elementoTextoAlarma.content = textoHora;
+        }
+    </script>
+</body>
+</html>

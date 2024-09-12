@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo peliculas</title>
+    <script src="catalogo.js"></script>
+</head>
+<body>
+    <h1>Bienvenido al catalogo de peliculas</h1>
+    <br>
+    <p>Con el siguiente formulario podrá filtrar las peliculas para encontrar 
+        la que mejor se adapta a su gusto</p>
+    <br>
+    <h3>Ingrese la edad</h3>
+    <input id="edad" type="number">
+    <br>
+    <h3>Seleccione una de las siguientes categorias</h3>
+    <button id="fantasia" onclick="recomendar('fantasia')">Fantasia</button>
+    <button id="romance" onclick="recomendar('romance')">Romance</button>
+    <button id="accion" onclick="recomendar('accion')">Accion</button>
+    <button id="infantil" onclick="recomendar('infantil')">Infantil</button>
+    <br>
+    <h2>La pelicula recomendada es: <span id="peliculaRecomendada"></span></h2>
+</body>
+</html>

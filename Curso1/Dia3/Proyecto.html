@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="misEstilos.css">
+    <title>Preguntas</title>
+</head>
+<body onload="empezarTiempo()">
+    <h2 id="instrucciones" onmouseover="cambiarTitulo()" onmouseleave="devolverTitulo()">Responde a las preguntas lo mas rapido que puedas <span id="cuentaRegresiva">30</span></h2>
+    <p>1. ¿Cual es la capital de Francia?</p>
+    <input type="text" id="pregunta1">
+    <p>2. (5 + 4)*3 + 6</p>
+    <input type="text" id="pregunta2">
+    <p>3. ¿Cual es la montaña más alta del mundo?</p>
+    <input type="text" id="pregunta3">
+    <p>4. ¿Que tipo de animal es un gato?</p>
+    <input type="text" id="pregunta4">
+    <p>5. Nombra una de las siete maravilla del mundo</p>
+    <input type="text" id="pregunta5">
+    <br><br>
+    
+    <button onclick="mostrarRespuestas()">Enviar respuestas</button>
+    <br><br>
+    <button onclick="reiniciar()">Volver a intentar</button>
+    <audio id="audioGameOver"><source src="Audios/alarma.mp3"></audio>
+
+    <script>
+        function cambiarTitulo(){
+            let titulo = document.getElementById("instrucciones");
+            titulo.style.color="red";
+        }
+        function devolverTitulo(){
+            let titulo = document.getElementById("instrucciones");
+            titulo.style.color="darkolivegreen";
+        }
+        let tiempoTerminado;
+        let intervaloTiempo;
+        function empezarTiempo(){
+            tiempoTerminado = setTimeout(finalizar,1000*30); //Cuando acaba el tiempo 
+            intervaloTiempo = setInterval(ticTac,1000); //Cada segundo se ejecuta
+            document.getElementById("cuentaRegresiva").textContent = 30;
+        }
+        function finalizar(){
+            clearTimeout(tiempoTerminado);
+            clearInterval(intervaloTiempo);
+            document.getElementById("cuentaRegresiva").textContent = 0;
+            document.getElementById("audioGameOver").play();
+            alert("GAME OVER: Se acabo el tiempo. Intentalo de nuevo")
+        }
+        function ticTac(){
+            let tiempo = document.getElementById("cuentaRegresiva").textContent;
+            document.getElementById("cuentaRegresiva").textContent = tiempo - 1;
+        }
+        function mostrarRespuestas(){
+            clearTimeout(tiempoTerminado);
+            clearInterval(intervaloTiempo);
+
+            let respuesta1 = document.getElementById("pregunta1").value;
+            let respuesta2 = document.getElementById("pregunta2").value;
+            let respuesta3 = document.getElementById("pregunta3").value;
+            let respuesta4 = document.getElementById("pregunta4").value;
+            let respuesta5 = document.getElementById("pregunta5").value;
+            let fecha = new Date();
+
+            let mensaje = fecha.toLocaleDateString("es-ES") + "\nRespuestas enviadas: \nRespuesta 1: "+respuesta1+
+            "\nRespuesta 2: "+respuesta2+"\nRespuesta 3: "+respuesta3+"\nRespuesta 4: "+respuesta4+"\nRespuesta 5: "+respuesta5;
+            alert(mensaje);
+        }
+        function reiniciar(){
+            location.reload();
+        }
+    </script>
+</body>
+</html>

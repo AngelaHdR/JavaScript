@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizaciones</title>
+    <script src="cotizar.js"></script>
+</head>
+<body onload="iniciarWeb()">
+    <div class="logo">
+        <h1 id="titulo"></h1>
+    <img id="logo">
+    </div>
+    <div class="cuadro">
+        <div id="euro"></div>
+        <div id="dollar"></div>
+        <div id="libra"></div>
+    </div>
+    <div class="espera">
+        <img id="imgEspera">
+    </div>
+    <!--<script>
+        function avanzarFila(callback){
+            setTimeout(function(){
+                console.log("Tu turno ha llegado")
+                callback();
+            },5*1000);
+        }
+
+        function mujerTeLlama(){
+            console.log("Te presentas a tu turno");
+        }
+        console.log("Llegas a la fila");
+        avanzarFila(mujerTeLlama);
+        console.log("Comprar cafe")
+    </script>
+    <script>
+        let miPromesa = new Promise(function(resolver,reject){
+            setTimeout(function(){
+                let error = false;
+                if(error){
+                    reject("La promesa ha fallado");
+                }else{
+                    resolve("La promesa se ha cumplido");
+                }
+                
+            })
+        })
+
+        miPromesa.then(function(resultado){
+            console.log(resultado);
+        }).catch(function(error){
+            console.log(error);
+        });
+
+        function obtenerUsuarios(){
+            return new Promise (function(resolve,reject){
+                let xhr = new HMLttpRequest();
+                xhr.open('GET','url');
+                xhr.onload = function(){
+                    if(xhr.status == 200){
+                        resolve(JSON.parse(xhr.responseText));
+                    }else{
+                        reject(xhr.statusText);
+                    }
+                }
+                xhr.send()
+            });
+        }
+
+        obtenerUsuarios().then(function(usuarios){
+            console.log(usuarios);
+        }).catch(function(error){
+            console.log(error);
+        })
+    </script>-->
+</body>
+</html>

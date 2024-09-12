@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas</title>
+    <script src="notas.js"></script>
+</head>
+<body onload="listarNotas()">
+    <h1>Bienvenido a tu boletin estudiantil</h1>
+    <h2>Alumna: Angela Hermosilla del Rio</h2>
+    <h3>Notas:</h3>
+    <ul id="listaCalificaciones">
+    </ul>
+    <button onclick="mostrarLista()">MOSTRAR NOTAS</button>
+    <button onclick="ocultarLista()">OCULTAR NOTAS</button>
+    <button onclick="calcularPromedio()">PROMEDIO</button>
+    <button onclick="notaMasAlta()">NOTA MAYOR</button>
+    <button onclick="hayAplazos()">APLAZOS</button>
+    <h3>La nota mas alta es: <span id="notaAlta"></span></h3>
+    <h3>El promedio de las notas es: <span id="notaPromedio"></span></h3>
+    <h3>Hay aplazos?: <span id="aplazos"></span></h3>
+</body>
+</html>

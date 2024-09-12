@@ -1,0 +1,13 @@
+{
+    "palabra": "Hola mundo",
+    "numerico": 23,
+    "booleano": false,
+    "objeto": {
+        "dato1": "Hola",
+        "dato2": "Adios"
+    },
+    "array":[
+        "521sdfa",
+        "151vafa"
+    ]
+}
