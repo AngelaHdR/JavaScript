@@ -1,3 +1,4 @@
+//Crear registro
 async function crearRegistro(nombre,telefono){
     try{
         let respuesta = await fetch(agenda.json,{

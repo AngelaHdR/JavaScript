@@ -1,0 +1,19 @@
+body{
+    background-color: hsl(7, 59%, 84%);
+    padding: 10px;
+    margin:0;
+}
+
+.container{
+    display: block;
+}
+.row{
+    display: block;
+}
+.bloque{
+    background-color: hsl(9, 24%, 60%);
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+}
+

@@ -1,0 +1,41 @@
+table{
+    border: 2px solid hsl(214, 60%, 36%);
+}
+th{
+    background-color: hsl(214, 59%, 49%);
+}
+td{
+    background-color: hsl(214, 70%, 71%);
+}
+body{
+    background-color: hsl(209, 60%, 83%);
+}
+button{
+    background-color: hsl(214, 88%, 29%);
+    border:2px solid hsl(214, 90%, 15%);
+    color: hsl(235, 39%, 94%);
+    margin: 2px;
+    padding: 4px;
+}
+h3{
+    display: inline-block;
+    border-bottom: 1px solid black;
+}
+input{
+    margin:2px;
+}
+.row{
+    display: inline-block;
+}
+.column{
+    display: inline-block;
+}
+label{
+    height: 30px;
+    width: 300px;
+    text-align: center;
+}
+textarea{
+    width: 200px;
+    height: 30px;
+}

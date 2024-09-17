@@ -5,34 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="calculadora.css">
-    <script src="calcular.js"></script>
+    
 </head>
 <body>
-    <h1>Calculadora</h1>
-    <input id="numero1" type="text">
-    <input id="numero2" type="text">
-    <br>
-    <button onclick="sumar()">+</button>
-    <button onclick="restar()">-</button>
-    <button onclick="multiplicar()">X</button>
-    <button onclick="dividir()">/</button>
-    <br>
-    <div class="doble">
-        <button onclick="raiz()">Raiz</button>
-        <button onclick="potencia()">Potencia</button>
-        <br>
-        <button onclick="absoluto()">Absoluto</button>
-        <button onclick="aleatorio()">Aleatorio</button>
-        <br>
-    </div>
-    <h3>Resultado:</h3>
-    <input id="resultado" type="text" value="resultado">
-    <br>
-    <div class="triple">
-        <button onclick="redondear()">Round</button>
-        <button onclick="redondearBajo()">Floor</button>
-        <button onclick="redondearAlto()">Ceil</button>
-</div>
+    <div class="container">
+        <div class="row">
+            <!--<div id="calculadora" class="bloque">
+                <div id="num1" class="column">
+                    <h1>Calculadora</h1>
+                    <input id="numero1" type="text" placeholder="Numero">
+                    <input id="numero2" type="text" placeholder="Numero">
+                    <br>
+                    <button onclick="sumar()">+</button>
+                    <button onclick="restar()">-</button>
+                    <button onclick="multiplicar()">X</button>
+                    <button onclick="dividir()">/</button>
+                    <br>
+                    <div class="doble">
+                        <button onclick="raiz()">Raiz</button>
+                        <button onclick="potencia()">Potencia</button>
+                        <br>
+                        <button onclick="absoluto()">Absoluto</button>
+                        <button onclick="aleatorio()">Aleatorio</button>
+                    </div>
+                    <h3>Resultado:</h3>
+                    <input id="resultado" type="text" value="resultado">
+                    <div class="triple">
+                        <button onclick="redondear()">Round</button>
+                        <button onclick="redondearBajo()">Floor</button>
+                        <button onclick="redondearAlto()">Ceil</button>
+                    </div>
+                </div>
+                
+            </div>-
 
+            <div id="multiplicador" class="bloque">
+                <div id="num1" class="column">
+                    <h1>Tablas</h1>
+                    <h3>Introducir un numero</h3>
+                    <input type="number" placeholder="Tabla de multiplicar">
+                    <button id="multiplicar">Generar tabla</button><br>
+                    <button>Actualizar</button><br>
+                    <button>Borrar todo</button>
+                </div>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="bloque tablasMultiplicar">
+                    <h1>Hola</h1>
+                
+            </div>
+            <div class="bloque tablasMultiplicar">
+                    <h1>Hola</h1>
+                    <p>Hola que tal</p>
+            </div>
+            <div class="bloque tablasMultiplicar">
+                <div id="num3" class="column">
+                    <h1>Hola</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
+<script src="calcular.js"></script>
+</html>           
