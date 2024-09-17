@@ -1,7 +1,20 @@
-[
-    {
-        "id":1,
-        "nombre": "angela",
-        "telefono": 784923091
-    }
-]
+{
+    "dispositivos":[
+        {
+            "id":1,
+            "marca": "samsung",
+            "modelo": "Samsung13",
+            "color":"azul",
+            "almacenamiento": "128GB",
+            "procesador": "A15"
+        },
+        {
+            "id":2,
+            "marca": "apple",
+            "modelo": "iphone13",
+            "color":"negro",
+            "almacenamiento": "128GB",
+            "procesador": "i15"
+        }
+    ]
+}

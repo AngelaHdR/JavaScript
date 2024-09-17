@@ -4,8 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de telefonos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+<body onload="crearFilasTabla()">
+    <table>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Color</th>
+                <th>Almacenamiento</th>
+                <th>Procesador</th>         
+            </tr>
+        </thead>
+        <tbody id="totalRegistros">    
+        </tbody>
+    </table>
+    <br><br>
+
+    <div id="buscarTelefono">
+        <h3>Consultar articulo</h3><br>
+        <input type="number" id="identificadorRegistro" placeholder="Ingrese el ID">
+        <button onclick="buscarRegistro()" id="buscarRegistro">Buscar registro</button>
+        <br><br>
+    </div>
+
+    <div id="modificarTelefono">
+        <h3>Modificar datos de un registro</h3><br>
+        <label for="marcaModificar">Marca: </label>
+        <textarea id="marcaModificar"></textarea><br>
+        <label for="modeloModificar">Modelo: </label>
+        <textarea id="modeloModificar"></textarea><br>
+        <label for="colorModificar">Color: </label>
+        <textarea id="colorModificar"></textarea><br>
+        <label for="almacenamientoModificar">Almacenamiento: </label>
+        <textarea id="almacenamientoModificar"></textarea><br>
+        <label for="procesadorModificar">Procesador: </label>
+        <textarea id="procesadorModificar"></textarea><br>
+        <button onclick="modificarRegistro()">Modificar datos</button>
+        <button onclick="eliminarRegistro()">Eliminar registro</button>
+        <br><br>
+        
+    </div>
+
+    <div id="nuevoTelefono">
+        <h3>Añadir nuevo registro</h3><br>
+        <input id="marca" placeholder="Marca"><br>
+        <input id="modelo" placeholder="Modelo"><br>
+        <input id="color" placeholder="Color"><br>
+        <input id="almacenamiento" placeholder="Almacenamiento"><br>
+        <input id="procesador" placeholder="Procesador"><br>
+        <button onclick="nuevoRegistro()" id="nuevoRegistro">Añadir elemento</button>
+        <br>
+    </div>
 </body>
+<script src="registro.js"></script>
 </html>
