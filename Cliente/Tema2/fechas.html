@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechas</title>
+</head>
+<body >
+    <h1>Fechas</h1>
+    <h3 id="mostrarFecha"></h3>
+    <input type="text" id="mes" placeholder="Mes">
+    <input type="text " id="anyo" placeholder="Año">
+    <button onclick="mostrarMes()">Mostrar calendario</button>
+    <button onclick="avanzarMes()">Siguiente</button>
+    <button onclick="retrocederMes()">Anterior</button>
+    <h2 id="mesCalendario"></h2>
+    <table id="calendario">
+        <thead id="tituloDias">
+
+        </thead>
+        <tbody id="numerosDias">
+
+        </tbody>
+    </table>
+    
+    <script src="calendario.js"></script>
+    <style>
+        table, thead,tbody,th{
+            border:2px solid black;
+        }
+    </style>
+</body>
+</html>

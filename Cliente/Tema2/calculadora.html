@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas multiplicar</title>
+</head>
+<body onload="crearTabla()">
+    <h1>Tablas de multiplicar</h1>
+    <input type="text" placeholder="Introduce un numero" id="numeroTabla">
+    <button onclick="mostrarTabla()">Mostrar tabla</button>
+    <table id="tablasMultiplicar">
+        
+    </table>
+    <h2>Multiplicador</h2>
+    <input type="text" placeholder="Introduce un numero" id="numero1">
+    <input type="text" placeholder="Introduce un numero" id="numero2">
+    <button onclick="multiplicador()">Multiplicar</button>
+    <h3 id="resultado"></h3>
+    <button onclick="borrarTabla()">Borrar tabla</button>
+    <style>
+        
+        td,th{
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
+    </style>
+</body>
+<script src="calculadora.js"></script>
+</html>
