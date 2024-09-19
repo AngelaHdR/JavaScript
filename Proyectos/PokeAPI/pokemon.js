@@ -1,22 +1,26 @@
-function loadGeneralData(){
-    //let urlLista = "listaPokemon.json";
-    let urlLista = "https://pokeapi.co/api/v2/pokemon";
-    fetch(urlLista)
-    .then(res=>res.json())
-    .then((data)=>{
-        let i=0;
-        let num=-1;
-        for(pokemon of data.results){
-            if(i%6==0){
-                num++;
-            }
-            loadPokemonData(pokemon.name,pokemon.url,num);
-            i++;
+//Mostrar todos los pokemon
+function showAllPokemon(){
+    console.log("Show all pokemon");
+    //Añadir el nombre del tipo
+    let landing = document.getElementById("landing");
+    let title = document.createElement("h2");
+    title.textContent="ALL POKEMON";
+    landing.appendChild(title);
+
+    let i=0;
+    let num=-1;
+    for(let pokemon of pokemonList){
+        //Para crear filas de 5 cartas
+        if(i%5==0){
+            num++;
         }
-    })
+        loadOnePokemonData(pokemon.name,pokemon.url,num);
+        i++
+    }
 }
 
-function loadPokemonData(name,url,num){
+//Cargar los detalles de un pokemon segun su nombre y enlace
+function loadOnePokemonData(name,url,num){
     fetch(url)
     .then(res=>res.json())
     .then((data)=>{
@@ -28,33 +32,12 @@ function loadPokemonData(name,url,num){
                 "attack":data.stats[1].base_stat,
                 "defense":data.stats[2].base_stat
             }
-        //createRow(pokemon, num);
-        filterByType(pokemon);
-        }
-    )
-    
+        createRow(pokemon,num);
+    })
 }
 
-function filterByType(pokemon){
-    let rowType = document.getElementById("row"+pokemon.types[0].type.name);
-    if(rowType === null){
-        //Crear la fila para ese tipo
-        rowType = document.createElement("div");
-        rowType.setAttribute("id","row"+pokemon.types[0].type.name);
-        rowType.setAttribute("class","row type");
-
-        //Añadir el nombre del tipo
-        let title = document.createElement("h2");
-        title.textContent=pokemon.types[0].type.name;
-        rowType.appendChild(title);
-        landing.appendChild(rowType);
-    }
-    let card = createCard(pokemon);
-    rowType.appendChild(card);
-}
-
+//Crear filas con todo tipo de pokemon
 function createRow(pokemon,num){
-    let landing = document.getElementById("landing");
     let row = document.getElementById("row"+num);
     if(row ===undefined || row===null){
         row = document.createElement("div");
@@ -67,6 +50,7 @@ function createRow(pokemon,num){
     
 }
 
+//Genera la carta del pokemon dado
 function createCard(pokemon){
     let card = document.createElement("div");
     card.setAttribute("class","col card");
@@ -103,4 +87,81 @@ function createCard(pokemon){
     card.appendChild(attack);
     card.appendChild(defense);
     return card;
+}
+
+
+
+//Mostrar los pokemon separados por tipo
+function allFilteredByType(pokemon,num,type){
+    let rowType = document.getElementById("row"+num+pokemon.types[0].type.name);
+    if(rowType === null){
+        //Crear la fila para ese tipo
+        rowType = document.createElement("div");
+        rowType.setAttribute("id","row"+pokemon.types[0].type.name);
+        rowType.setAttribute("class","row type");
+
+        //Añadir el nombre del tipo
+        let title = document.createElement("h2");
+        title.textContent=pokemon.types[0].type.name;
+        rowType.appendChild(title);
+        landing.appendChild(rowType);
+    }
+    let card = createCard(pokemon);
+    rowType.appendChild(card);
+}
+
+//Input para mostrar los pokemon solo de un tipo
+function findTypes(){
+    let containerOptions = document.getElementById("options");
+    containerOptions.innerHTML = "";
+    let data = document.getElementById("type").value.toLowerCase();
+    console.log(data);
+    for(let type of types){
+        if(type.startsWith(data)){
+            let linked = document.createElement("button");
+            linked.textContent=type;
+            linked.addEventListener("click",()=>showAllFromType(type));
+            containerOptions.appendChild(linked);
+        }
+    }
+}
+
+//Crar filas con los pokemon solo de un tipo
+function showAllFromType(types){
+    let landing = document.getElementById("landing");
+    landing.innerHTML="";
+    let title = document.createElement("h2");
+    title.textContent=types.toUpperCase();
+    landing.appendChild(title);
+
+    console.log("Buscar por tipo")
+    let i=0;
+    let num=-1;
+    for(let pokemon of pokemonList){
+        fetch(pokemon.url)
+        .then(res=>res.json())
+        .then((data)=>{
+            let typeElem = data.types;
+            for(let elem of typeElem){
+                console.log(elem.type.name==types)
+                if(elem.type.name===types){
+                    pokemon={
+                        "name":pokemon.name,
+                        "types":data.types,
+                        "image":data.sprites.front_default,
+                        "hp":data.stats[0].base_stat,
+                        "attack":data.stats[1].base_stat,
+                        "defense":data.stats[2].base_stat
+                    }
+                    //Para crear filas de 5 cartas
+                    if(i%5==0){
+                        num++;
+                    }
+                    createRow(pokemon,num);
+                    i++
+                }
+            }
+            
+        })
+    }
 }

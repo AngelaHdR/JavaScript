@@ -6,12 +6,24 @@
     <link rel="stylesheet" href="custom.css">
     <title>Pokemon</title>
 </head>
-<body>
-    <div id="landing" class="container">
+<body onload="loadAllData()">
+    <header>
         <h1 class="title-section">Pokemon Primera Generacion</h1>
+        <button onclick="showAllPokemon()">Generar cartas</button>
+        <input type="text" id="type" placeholder="Introduce un tipo">
+        <button onclick="findTypes()">Buscar</button>
+        <button onclick="showTypes()">Generar tipos</button>
+        <div id="options"></div>
+    </header>
+    <div id="landing" class="container">
         
     </div>
-    <button onclick="loadGeneralData()">Generar cartas</button>
+    <footer>
+        <button onclick="previousPage()" id="previous">Pagina anterior</button>
+        <button onclick="nextPage()" id="next">Pagina siguiente</button>
+    </footer>
+    <script src="pokemon.js"></script>
+    <script src="data.js"></script>
 </body>
-<script src="pokemon.js"></script>
+
 </html>
