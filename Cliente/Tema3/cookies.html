@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+</head>
+<body>
+    <h1>Cookies guardadas</h1>
+    <p>En Inspeccionar -> Aplicacion -> Storage -> Cookies se pueden ver las cookies guardadas</p>
+    <script>
+        //Añadir cookies
+        document.cookie = "nombre=Pepe"; 
+        document.cookie = "edad=30"; 
+        document.cookie = "ciudad=Valencia"; 
+        alert("Cookies guardadas correctamente."); 
+        console.log("String: "+document.cookie)
+
+        //Ver cookies
+        let cookies = document.cookie.split("; ");
+        console.log("Primer split ;")
+        console.log(cookies)
+        let arrayCookies =[];
+        cookies.forEach(c=>{
+            let array = c.split("=");
+            arrayCookies.push(array)
+        })
+        console.log("Segundo split =");
+        console.log(arrayCookies);
+
+        //Modificar cookies
+        arrayCookies.forEach(c=>{
+            if(c[0]=="nombre"){
+                c[1]="angela";
+            }else if(c[0]=="edad"){
+                c[1]="22";
+            }
+        })
+        console.log(arrayCookies);
+    </script>
+</body>
+</html>

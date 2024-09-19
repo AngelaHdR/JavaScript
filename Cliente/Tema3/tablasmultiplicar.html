@@ -8,7 +8,7 @@
 <body onload="crearTabla()">
     <h1>Tablas de multiplicar</h1>
     <input type="text" placeholder="Introduce un numero" id="numeroTabla">
-    <button onclick="mostrarTabla()">Mostrar tabla</button>
+    <button onclick="mostrarTabla()">Mostrar tabla</button><br><br>
     <table id="tablasMultiplicar">
         
     </table>
@@ -19,7 +19,12 @@
     <h3 id="resultado"></h3>
     <button onclick="borrarTabla()">Borrar tabla</button>
     <style>
-        
+        tbody{
+            background-color: hsl(158, 46%, 78%);
+        }
+        th{
+            background-color: hsl(158, 26%, 51%);
+        }
         td,th{
             border-bottom: 1px solid black;
             border-right: 1px solid black;
