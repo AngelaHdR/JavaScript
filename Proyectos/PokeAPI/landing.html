@@ -12,18 +12,20 @@
         <button onclick="showAllPokemon()">Generar cartas</button>
         <input type="text" id="type" placeholder="Introduce un tipo">
         <button onclick="findTypes()">Buscar</button>
-        <button onclick="showTypes()">Generar tipos</button>
+        <button onclick="showTypes()">Listar tipos</button>
         <div id="options"></div>
     </header>
     <div id="landing" class="container">
         
     </div>
     <footer>
-        <button onclick="previousPage()" id="previous">Pagina anterior</button>
-        <button onclick="nextPage()" id="next">Pagina siguiente</button>
+        <button onclick="previousPage()" id="previous" class="optional">Pagina anterior</button>
+        <button onclick="nextPage()" id="next" class="optional">Pagina siguiente</button>
     </footer>
+    <script src="pokemonLayout.js"></script>
     <script src="pokemon.js"></script>
     <script src="data.js"></script>
+    <script src="filters.js"></script>
 </body>
 
 </html>
