@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="custom.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="custom.css" />
     <title>Pokemon</title>
-</head>
-<body onload="loadAllData()">
+  </head>
+  <body>
     <header>
-        <h1 class="title-section">Pokemon Primera Generacion</h1>
-        <button onclick="showAllPokemon()">Generar cartas</button>
-        <input type="text" id="type" placeholder="Introduce un tipo">
-        <button onclick="findTypes()">Buscar</button>
-        <button onclick="showTypes()">Listar tipos</button>
-        <div id="options"></div>
+      <h1 class="title-section">Pokemon Primera Generacion</h1>
     </header>
-    <div id="landing" class="container">
-        
+
+    <div class="menu menu--principal">
+        <div class="menu menu__option">
+            <button onclick="showAllPokemon()" class="boton boton-principal">
+            Generar cartas
+            </button>
+            <button onclick="showTypes()" class="boton">Listar tipos</button>
+        </div>
+        <div class="menu menu__option">
+            <input type="text" id="type" placeholder="Introduce un tipo" />
+            <button onclick="findTypes()" class="boton">Buscar Tipo</button>
+        </div>
+        <div class="menu menu__option style: display: none">
+            <input type="text" id="type" placeholder="Introduce un pokemon" />
+            <button onclick="findTypes()" class="boton">Buscar Pokemon</button>
+        </div>
     </div>
-    <footer>
-        <button onclick="previousPage()" id="previous" class="optional">Pagina anterior</button>
-        <button onclick="nextPage()" id="next" class="optional">Pagina siguiente</button>
-    </footer>
+
+      <div id="options" class="menu menu__secundario"></div>
+    </div>
+
+    <div id="landing" class="layout"></div>
+
+    <div class="menu menu--secundario">
+      <button
+        onclick="previousPage()"
+        id="previous"
+        class="boton boton-optional"
+      >
+        Pagina anterior
+      </button>
+      <button onclick="nextPage()" id="next" class="boton boton-optional">
+        Pagina siguiente
+      </button>
+    </div>
+
     <script src="pokemonLayout.js"></script>
-    <script src="pokemon.js"></script>
+    <script src="Pokemon.js"></script>
     <script src="data.js"></script>
     <script src="filters.js"></script>
-</body>
-
+  </body>
 </html>

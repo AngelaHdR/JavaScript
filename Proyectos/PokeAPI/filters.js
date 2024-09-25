@@ -4,7 +4,7 @@ function showTypes() {
     containerOptions.innerHTML = "";
 
     i=0;
-    types.forEach(typeElem=>{
+    loadTypeData().forEach(typeElem=>{
         if(i%7==0){
             containerOptions.appendChild(document.createElement("br"));
         }

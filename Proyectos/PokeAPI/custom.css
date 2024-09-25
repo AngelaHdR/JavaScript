@@ -1,37 +1,90 @@
-*{
-    padding:0;
-    margin:0;
+* {
+  padding: 0;
+  margin: 0;
+  --default-margin: 6px 2px;
+  --default-padding: 4px 6px;
+  --font-color-principal: hsl(0, 23%, 97%);
+  --font-color-secundario: hsl(0, 4%, 14%);
+  --color-principal: hsl(186, 52%, 75%);
+  --color-principal-2: hsl(186, 28%, 62%);
+  --color-secundario: hsl(0, 67%, 38%);
+  --color-secundario-2: hsl(0, 66%, 29%);
+  --color-secundario-3: hsl(0, 43%, 46%);
 }
-body{
-    background-color: hsl(342, 44%, 32%);
-    align-items: center;
-    display:block;
+/*hsl(3 42, 44%, 32%)
+hsl(342, 24%, 49%)
+hsl(342, 53%, 76%)
+*/
+body {
+  background-color: var(--color-principal);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
-.title-section{
-    text-align: center;
-    color: aliceblue;
+
+.title-section {
+  text-align: center;
+  color: var(--font-color-secundario);
+  margin: var(--default-margin);
 }
-.type{
-    height: 20rem;
-    width: 90%;
-    background-color: hsl(342, 24%, 49%);
-    padding: 2%;
-    display: inline-block;
-    margin:2px;
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
-.card{
-    text-align: center;
-    margin: 2px;
-    height: 90%;
-    width: 18%;
-    background-color: hsl(342, 53%, 76%);
-    margin-top: 1%;
-    display: inline-block;
+.menu--secundario {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
 }
-li{
-    text-decoration: none;
-    list-style: none;
+.menu__option {
+  flex-direction: column;
+  justify-content: space-around;
 }
-.optional{
-    display: none;
+
+.boton {
+  padding: var(--default-padding);
+  background-color: var(--color-secundario-3);
+  color: var(--font-color-principal);
+  border: 1px solid var(--color-secundario-2);
+  border-radius: 5px;
+}
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-evenly;
+  background-color: var(--color-secundario);
+  padding: var(--default-padding);
+  margin: var(--default-margin);
+  align-items: stretch;
+  border-radius:5px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-evenly;
+  align-items: stretch;
+  text-align: center;
+  margin: var(--default-margin);
+  background-color: var(--color-secundario-3);
+  margin: var(--default-margin);
+  border-radius: 5px;
+}
+li {
+  text-decoration: none;
+  list-style: none;
+}
+.boton-optional {
+  display: none;
 }
