@@ -38,7 +38,7 @@ function findTypes() {
 }
 
 //Crear filas con los pokemon solo de un tipo
-function showAllFromType(type) {
+async function showAllFromType(type) {
     let containerOptions = document.getElementById("options");
     containerOptions.innerHTML = "";
     console.log("Buscar por tipo")
@@ -51,26 +51,37 @@ function showAllFromType(type) {
 
     //Cargar todos los pokemon
     pokemonList=[];
-    for(let i=0;i<listPokemon.length;i++){
+    await listPokemon.forEach(function (pokemonurl,i){
         loadListPokemonData(i);
-    }
+    })
     
-    //Filtrar por el tipo
+    //Filtrar por el tipo --no funciona el filtrado
     let pokemonListType =[];
-    pokemonListType = pokemonList.filter(pokemon => {
-        return pokemon.types[1].type.name == type;
-    });
-
-    let i = 0;
-    let num = 0;
-    pokemonListType.forEach(pokemon => {
-        if (i % 5 == 0 && i!=0) {
-            num++;
-        }
-        createRow(pokemon, num, type)
-        i++;
+    /*pokemonListType = pokemonObjList.filter(pokemon => {
+        return pokemon.types[0].type.name == type;
+    });*/
+    
+    console.log(pokemonList);
+    await pokemonObjList.forEach((pokemon)=>{
+        let type =pokemon.types;
+        console.log(type);
+        type.forEach(slot=>{
+            if(slot.type.name==type){
+                pokemonListType.push(pokemon);
+            }
+        })
     })
 
-    console.log(pokemonListType);
-
+    
+    let i = 0;
+    let num = 0;
+    setTimeout(async function (){
+        await pokemonListType.forEach(pokemon=>{
+            if(i%5==0 && i!=0){
+                num++;
+            }
+            createRow(pokemon,num,type);
+            i++;
+        })
+    },1000);
 }

@@ -1,10 +1,13 @@
 //Mostrar todos los pokemon
 async function showAllPokemon(){
+    pokemonList=[];
+    pokemonObjList=[];
+    await loadListPokemonData(pag);
+    console.log(pokemonList);
     console.log("Show all pokemon");
     let containerOptions = document.getElementById("options");
     containerOptions.innerHTML = "";
-    pokemonList=[];
-    loadListPokemonData(pag);
+    
     
     let landing = document.getElementById("landing");
     landing.innerHTML="";
@@ -14,17 +17,22 @@ async function showAllPokemon(){
     
     let i=0;
     let num=0;
-    pokemonList.forEach(pokemon=>{
-        if(i%5==0 && i!=0){
-            num++;
-        }
-        createRow(pokemon,num,"")
-        i++;
-    })
+    console.log("Empezar");
+    console.log(pokemonObjList);
+    setTimeout(async function (){
+        await pokemonObjList.forEach(pokemon=>{
+            if(i%5==0 && i!=0){
+                num++;
+            }
+            createRow(pokemon,num,"");
+            i++;
+        })
+    },1000);
+    showButton();
 }
 
 //Crear filas con todo tipo de pokemon
-function createRow(pokemon,num,type){
+async function createRow(pokemon,num,type){
     let row = document.getElementById("row"+num+type);
     if(row === undefined || row === null){
         //Añadir el nombre del tipo
@@ -38,13 +46,13 @@ function createRow(pokemon,num,type){
         row.appendChild(title);
         landing.appendChild(row);
     }
-    let card = createCard(pokemon);
+    console.log("Row "+num);
+    let card = await createCard(pokemon);
     row.appendChild(card);
 }
 
 //Genera la carta del pokemon dado
 function createCard(pokemon){
-    console.log(pokemon)
     let card = document.createElement("div");
     card.setAttribute("class","col card");
 
@@ -58,7 +66,6 @@ function createCard(pokemon){
 
     let type = document.createElement("ul");
     type.textContent = "Tipo: ";
-    console.log(pokemon.types)
     for(slot of pokemon.types){
         let type2 = document.createElement("li");
         type2.textContent = slot.type.name;

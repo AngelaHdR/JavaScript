@@ -13,8 +13,19 @@ function loadAllData(){
 }
 
 async function loadListPokemonData(pag){
-    await fetch(listPokemon[pag])
-    .then(res=>res.json())
+    try{
+        let respuesta = await fetch(listPokemon[pag]);
+        let data = await respuesta.json();
+        console.log(data);
+        data.results.forEach(pokemon=>{
+            pokemonList.push(pokemon);
+        });
+    }
+    catch(error){
+        console.log("Error al cargar la lista de pokemon"+error);
+    }
+    
+    /*.then(res=>res.json())
     .then((data)=>{
         data.results.forEach(pokemon=>{
             pokemonList.push(pokemon);
@@ -22,15 +33,12 @@ async function loadListPokemonData(pag){
     })
     .catch(error=>{
         console.log("Error al cargar la lista de pokemon"+error);
+    })*/
+    await pokemonList.forEach(async function (pokemon){
+        await loadOnePokemonData(pokemon.name,pokemon.url);
+        await sortPokedex();
     })
-    await pokemonList.forEach(pokemon=>{
-        let pokemonObj= loadOnePokemonData(pokemon.name,pokemon.url);
-        pokemonObjList.push(pokemonObj);
-    })
-    console.log(pokemonObjList)
-    await console.log(pokemonList)
     
-    showButton();
 }
 
 function loadTypeData(){
@@ -49,8 +57,25 @@ function loadTypeData(){
 
 //Cargar los detalles de un pokemon segun su nombre y enlace
 async function loadOnePokemonData(name,url){
-    await fetch(url)
-    .then(res=>res.json())
+    try{
+        let respuesta = await fetch(url);
+        let data = await respuesta.json();
+        let pokemonObj = new Pokemon(
+            name,
+            url,
+            data.id,
+            data.types,
+            data.sprites.front_default,
+            data.stats[0].base_stat,
+            data.stats[1].base_stat,
+            data.stats[2].base_stat
+        );
+        pokemonObjList.push(pokemonObj);
+    }catch(error){
+        console.log("Error al cargar un pokemon"+error);
+    }
+    
+    /*.then(res=>res.json())
     .then((data)=>{
         let pokemonObj = new Pokemon(
             name,
@@ -61,28 +86,25 @@ async function loadOnePokemonData(name,url){
             data.stats[1].base_stat,
             data.stats[2].base_stat
         );
-        console.log("Pokemon: "+pokemonObj)
-        return pokemonObj;
+        pokemonObjList.push(pokemonObj);
     })
     .catch(error=>{
         console.log("Error al cargar un pokemon"+error);
-    })
+    })*/
     
 }
 
 //Botones para cambiar de pagina, solo funcionan en la opcion de busqueda general
-async function previousPage(){
+function previousPage(){
     pag--;
     document.getElementById("landing").innerHTML="";
-    await loadListPokemonData(pag);
     showAllPokemon();
     showButton();
 }
 
-async function nextPage(){
+function nextPage(){
     pag++;
     document.getElementById("landing").innerHTML="";
-    await loadListPokemonData(pag);
     showAllPokemon();
     showButton();
 }
@@ -102,4 +124,8 @@ function showButton(){
     }else{
         buttonNext.style.display = "block";
     }
+}
+
+function sortPokedex(){
+    pokemonObjList.sort((pokemon1, pokemon2) => pokemon1.id-pokemon2.id);
 }
