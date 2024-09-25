@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fechas</title>
+    <link rel="stylesheet" href="custom.css">
 </head>
-<body >
-    <h1>Fechas</h1>
+
+<body>
+    <h1>Fecha actual</h1>
     <h3 id="mostrarFecha"></h3>
-    <input type="text" id="mes" placeholder="Mes">
-    <input type="text " id="anyo" placeholder="Año">
-    <button onclick="mostrarMes()">Mostrar calendario</button>
-    <button onclick="avanzarMes()">Siguiente</button>
-    <button onclick="retrocederMes()">Anterior</button>
+    <div class="header">
+        <input class="formulario" type="text" id="mes" placeholder="Mes">
+        <input class="formulario" type="text " id="anyo" placeholder="Año">
+        <button onclick="mostrarMes()">Mostrar calendario</button>
+        <button onclick="avanzarMes()">Siguiente</button>
+        <button onclick="retrocederMes()">Anterior</button>
+    </div>
     <h2 id="mesCalendario"></h2>
-    <table id="calendario">
-        <thead id="tituloDias">
+    <div class="agenda2">
+        <table id="calendario" class="table">
+            <thead id="tituloDias" class="table table__head">
 
-        </thead>
-        <tbody id="numerosDias">
+            </thead>
+            <tbody id="numerosDias" class="table table__body">
 
-        </tbody>
-    </table>
-    
+            </tbody>
+        </table>
+    </div>
     <script src="calendario.js"></script>
-    <style>
-        table, thead,tbody,th{
-            border:2px solid hsl(243, 37%, 35%);
-            text-align: center;
-            width: 500px;
-        }
-        thead{
-            background-color: hsl(243, 51%, 60%);
-        }
-        tbody{
-            background-color: hsl(243, 40%, 68%);
-        }
-    </style>
 </body>
+
 </html>

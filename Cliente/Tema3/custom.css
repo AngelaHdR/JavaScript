@@ -1,0 +1,33 @@
+body{
+    justify-content: center;
+    text-align: center;
+}
+
+.formulario {
+    background-color: rgb(231, 209, 181);
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.agenda2{
+    display: flex;
+    justify-content: center;
+}
+
+.table,
+th {
+    border: 2px solid hsl(243, 37%, 35%);
+    text-align: center;
+    width: 500px;
+}
+
+.table__head {
+    background-color: hsl(243, 51%, 60%);
+}
+
+.table__body {
+    background-color: hsl(243, 40%, 68%);
+}
+.table__day--warning{
+    background-color: hsl(200, 44%, 50%);
+}

@@ -1,8 +1,8 @@
 //Variables
 let fecha = new Date();
-let meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-let diasMeses = [31,28,31,30,31,30,31,31,30,31,30,31];
-let diasSemana = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+let meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+let diasMeses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let diasSemana = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
 
 //Fecha actual
 let anyo = fecha.getFullYear();
@@ -17,14 +17,22 @@ fechaActual.textContent = mensaje;
 //Mostrar un calendario
 let year;
 let month;
-function crearCalendario(){
+function crearCalendario() {
     let tituloDias = document.getElementById("tituloDias");
-    tituloDias.innerHTML="";
-    for(i=1;i<8;i++){
+    tituloDias.innerHTML = "";
+    /*Con programacion funcional, pero el domingo sale primero 
+    diasSemana.forEach(dia=>{
         let titulo = document.createElement("th");
-        if(i>=7){
+        titulo.textContent = dia;
+        tituloDias.appendChild(titulo);
+        
+    })*/
+    
+    for (i = 1; i < 8; i++) {
+        let titulo = document.createElement("th");
+        if (i >= 7) {
             titulo.textContent = diasSemana[0];
-        }else{
+        } else {
             titulo.textContent = diasSemana[i];
         }
         tituloDias.appendChild(titulo);
@@ -32,14 +40,14 @@ function crearCalendario(){
     mostrarFechas();
 }
 
-function mostrarMes(){
+function mostrarMes() {
     year = +document.getElementById("anyo").value;
-    month = +document.getElementById("mes").value;
-    definirMes(year,month-1);
+    month = +document.getElementById("mes").value -1;
+    definirMes(year, month);
     crearCalendario();
 }
 
-function definirMes(year,month){
+function definirMes(year, month) {
     fecha.setFullYear(year)
     fecha.setMonth(month);
     fecha.setDate(1);
@@ -47,44 +55,74 @@ function definirMes(year,month){
     mesCalendario.textContent = `${meses[fecha.getMonth()]} del ${fecha.getFullYear()}`;
 }
 
-function mostrarFechas(){
+function mostrarFechas() {
     let tablaBody = document.getElementById("numerosDias");
-    tablaBody.innerHTML="";
+    tablaBody.innerHTML = "";
     let diaUno = fecha.getDay();
-    if(diaUno==0){
-        diaUno=7;
+    if (diaUno == 0) {
+        diaUno = 7;
     }
     let longitud = diasMeses[fecha.getMonth()];
 
-    longitud = longitud + (-1+diaUno);
+    longitud = longitud + (-1 + diaUno);
     let fila = document.createElement("tr");
-    let iterarSemana=1;
-    for(i=1;i<=longitud;i++){
-        if(iterarSemana<diaUno){
+    let iterarSemana = 1;
+    for (i = 1; i <= longitud; i++) {
+        //Rellenar las primeras celdas vacias hasta el dia 1
+        if (iterarSemana < diaUno) {
             let columna = document.createElement("td");
-            columna.textContent=" ";
+            columna.textContent = " ";
             fila.appendChild(columna);
             iterarSemana++;
-        }else{
+        //Completar las celdas con numeros
+        } else {
             let columna = document.createElement("td");
-            columna.textContent=i-diaUno+1;
+            let dia = i - diaUno + 1;
+            columna.setAttribute("class","dia"+dia)
+            columna.textContent = dia;
             fila.appendChild(columna);
         }
-        if(i%7==0 || i==longitud){
+        //Cambiar de fila cuando llega el domingo
+        if (i % 7 == 0) {
             tablaBody.appendChild(fila);
             fila = document.createElement("tr");
         }
+        //Rellenar las celdas vacias hasta el siguiente domingo
+        if (i == longitud) {
+            let finalDay = new Date(fecha.getFullYear(), fecha.getMonth(), diasMeses[fecha.getMonth()]).getDay();
+            while (finalDay != 0) {
+                let columna = document.createElement("td");
+                columna.textContent = " ";
+                fila.appendChild(columna);
+                finalDay++;
+                if (finalDay == 7) {
+                    finalDay = 0;
+                }
+            }
+            tablaBody.appendChild(fila);
+        }
     }
+    pintarFechaActual();
 }
 
-function avanzarMes(){
-    month+=1;
-    definirMes(year,month);
+function avanzarMes() {
+    month += 1;
+    definirMes(year, month);
     crearCalendario();
 }
 
-function retrocederMes(){
-    month-=1
-    definirMes(year,month);
+function retrocederMes() {
+    month -= 1
+    definirMes(year, month);
     crearCalendario();
+}
+
+function pintarFechaActual(){
+    let fechaActual = new Date();
+    if(month==fechaActual.getMonth() && year==fechaActual.getFullYear()){
+        console.log(fechaActual);
+        console.log(fechaActual.getDate());
+        let diaActual = document.getElementsByClassName("dia"+fechaActual.getDate());
+        diaActual[0].setAttribute("class","table__day--warning")
+    }
 }
