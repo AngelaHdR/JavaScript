@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <title>Alumnos</title>
+  </head>
+  <body>
+    <div class="nav nav-primary">
+      <button class="btn btn-info" onclick="mostrarAlumnos()">
+        Mostrar Alumnos
+      </button>
+      <button class="btn btn-info" onclick="buscarAlumno()">
+        Buscar Alumno
+      </button>
+      <button class="btn btn-success" onclick="addAlumno()">
+        Añadir Alumno
+      </button>
+      <button class="btn btn-danger" onclick="borrarAlumno()">
+        Borrar Alumno
+      </button>
+    </div>
+    <div id="listaAlumnos"></div>
+
+    <script>
+      const alumnos = [
+        "ana",
+        "juan",
+        "maria",
+        "pepe",
+        "luis",
+        "angela",
+        "sole",
+      ];
+
+      const mostrarAlumnos = () => {
+        let listaAlumnos = document.getElementById("listaAlumnos");
+        let texto = "";
+        alumnos.forEach((alumno) => {
+          texto += `<h3 class="border">${alumno}</h3>`;
+        });
+        listaAlumnos.innerHTML = texto;
+      };
+
+      const buscarAlumno = () => {
+        const alumno = window.prompt("Introduce un alumno");
+        const buscado = alumnos.filter((a) => a.startsWith(alumno));
+        if (buscado.length == 0) {
+          alert("El alumno no existe");
+        } else {
+          alert("Alumno buscado: " + buscado);
+        }
+      };
+
+      const addAlumno = () => {
+        const alumno = window.prompt("Introduce un alumno");
+        const buscado = alumnos.filter((a) => a == alumno);
+        if (buscado.length == 1) {
+          alert("Este alumno ya existe");
+        } else {
+          alumnos.push(alumno);
+          mostrarAlumnos();
+        }
+      };
+
+      const borrarAlumno = () => {
+        const alumno = window.prompt("Introduce un alumno");
+        const buscado = alumnos.filter((a) => a == alumno);
+
+        if (buscado.length == 1) {
+          const i = alumnos.findIndex((b) => b == buscado);
+          alumnos.splice(i, 1);
+          alert("Alumno " + buscado + " eliminado");
+        } else {
+          alert("Este alumno no existe");
+        }
+      };
+    </script>
+  </body>
+</html>
