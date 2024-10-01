@@ -1,63 +1,7 @@
-//Mostrar todos los pokemon
-const showAllPokemon = async () => {
-  const pokemonList = await loadListPokemonData(pag);
-  const pokemonListFullData = await loadpokemonDataFromList(pokemonList);
-
-  console.log("Show all pokemon: " + pokemonListFullData);
-  let containerOptions = document.getElementById("options");
-  containerOptions.innerHTML = "";
-
-  let landing = document.getElementById("landing");
-  landing.innerHTML = "";
-
-  let title = document.createElement("h2");
-  title.textContent = "ALL POKEMON";
-
-  landing.appendChild(title);
-
-  let i = 0;
-  let num = 0;
-
-  setTimeout(async function () {
-    await pokemonListFullData.forEach((pokemon) => {
-      if (i % 5 == 0 && i != 0) {
-        num++;
-      }
-
-      createRow(pokemon, num, "");
-      i++;
-    });
-  }, 1000);
-
-  showButton();
-};
-
-//Crear filas con todo tipo de pokemon
-async function createRow(pokemon, num, type) {
-  let row = document.getElementById("row" + num + type);
-
-  if (row === undefined || row === null) {
-    //Añadir el nombre del tipo
-    let title = document.createElement("h2");
-    title.textContent = type;
-
-    //Crear la fila
-    row = document.createElement("div");
-    row.setAttribute("id", "row" + num + type);
-    row.setAttribute("class", "row type");
-    row.appendChild(title);
-    landing.appendChild(row);
-  }
-  console.log("Row " + num);
-  let card = await createCard(pokemon);
-  row.appendChild(card);
-  return row;
-}
-
 //Genera la carta del pokemon dado
 function createCard(pokemon) {
   let card = document.createElement("div");
-  card.setAttribute("class", "col card");
+  card.className = "";
 
   let image = document.createElement("img");
   image.setAttribute("src", pokemon.image);
@@ -65,7 +9,7 @@ function createCard(pokemon) {
 
   let name = document.createElement("p");
   name.setAttribute("id", "pokemon" + pokemon.name);
-  name.textContent = pokemon.name;
+  name.textContent = pokemon.name.toUpperCase();
 
   let type = document.createElement("ul");
   type.textContent = "Tipo: ";
@@ -83,6 +27,11 @@ function createCard(pokemon) {
 
   let defense = document.createElement("p");
   defense.textContent = "Defensa: " + pokemon.defense;
+  if (pokemon.types[0].type.name == "normal" && pokemon.types.length > 1) {
+    card.className = "col card " + pokemon.types[1].type.name;
+  } else {
+    card.className = "col card " + pokemon.types[0].type.name;
+  }
 
   card.appendChild(image);
   card.appendChild(name);
@@ -92,3 +41,23 @@ function createCard(pokemon) {
   card.appendChild(defense);
   return card;
 }
+
+//Mostrar botones para todos los tipos o solo para el tipo buscado
+const findTypes = async () => {
+  let containerOptions = document.getElementById("options");
+  containerOptions.innerHTML = "";
+  
+  let result = document.getElementById("type").value.toLowerCase();
+  
+  let data = await loadTypeData();
+  data.forEach((typeElem) => {
+    if(result==null || (result!=null && typeElem.name.startsWith(result))){
+      let linked = document.createElement("button");
+      linked.textContent = typeElem.name;
+      linked.className = "boton boton-secundario";
+      linked.addEventListener("click", () => showAllFromType(typeElem.name));
+      containerOptions.appendChild(linked);
+    }
+  });
+  document.getElementById("type").value = "";
+};

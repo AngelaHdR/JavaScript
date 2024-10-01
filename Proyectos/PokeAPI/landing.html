@@ -9,46 +9,60 @@
   <body>
     <header>
       <h1 class="title-section">Pokemon Primera Generacion</h1>
+      <!--<div class="menu menu--principal flex flex--horizontal"></div>
+        <button onclick="showAllPokemon()" class="boton boton-principal">
+          Todos los pokemon
+        </button>
+        <button onclick="menuTypes()" class="boton boton-secundario">
+          Buscar por Tipo
+        </button>
+        <button onclick="menuNamePokemon()" class="boton boton-secundario">
+          Buscar por Nombre
+        </button>
+    </div>-->
     </header>
 
-    <div class="menu menu--principal">
-        <div class="menu menu__option">
-            <button onclick="showAllPokemon()" class="boton boton-principal">
-            Generar cartas
-            </button>
-            <button onclick="showTypes()" class="boton">Listar tipos</button>
-        </div>
-        <div class="menu menu__option">
-            <input type="text" id="type" placeholder="Introduce un tipo" />
-            <button onclick="findTypes()" class="boton">Buscar Tipo</button>
-        </div>
-        <div class="menu menu__option style: display: none">
-            <input type="text" id="type" placeholder="Introduce un pokemon" />
-            <button onclick="findTypes()" class="boton">Buscar Pokemon</button>
-        </div>
+    <div class="menu menu--principal flex flex--horizontal">
+      <div class="menu flex flex--vertical">
+        <button onclick="showAllPokemon()" class="boton boton-principal">
+          Generar cartas
+        </button>
+        <button onclick="findTypes()" class="boton boton-principal">
+          Listar tipos
+        </button>
+      </div>
+      <div class="menu flex flex--vertical">
+        <input type="text" id="type" placeholder="Introduce un tipo" />
+        <button onclick="findTypes()" class="boton boton-secundario">
+          Buscar Tipo
+        </button>
+      </div>
+      <div class="menu flex flex--vertical">
+        <input type="text" id="pokemon" placeholder="Introduce un pokemon" />
+        <button onclick="showFilteredPokemon()" class="boton boton-secundario">
+          Buscar Pokemon
+        </button>
+      </div>
     </div>
 
-      <div id="options" class="menu menu__secundario"></div>
+    <div id="options" class="menu__option"></div>
+
+    <div id="landing" class="layout flex flex--vertical">
+      <h2 id="title-type"></h2>
+      <div id="pokedex" class="pokedex"></div>
     </div>
 
-    <div id="landing" class="layout"></div>
-
-    <div class="menu menu--secundario">
-      <button
-        onclick="previousPage()"
-        id="previous"
-        class="boton boton-optional"
-      >
+    <div class="menu flex flex--nowrap">
+      <button id="previous" class="boton boton-optional">
         Pagina anterior
       </button>
-      <button onclick="nextPage()" id="next" class="boton boton-optional">
-        Pagina siguiente
-      </button>
+      <button id="next" class="boton boton-optional">Pagina siguiente</button>
     </div>
 
     <script src="pokemonLayout.js"></script>
     <script src="Pokemon.js"></script>
     <script src="data.js"></script>
     <script src="filters.js"></script>
+    <script src="botones.js"></script>
   </body>
 </html>

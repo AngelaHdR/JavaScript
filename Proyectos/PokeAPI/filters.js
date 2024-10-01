@@ -1,87 +1,74 @@
-//Mostrar botones para todos los tipos
-function showTypes() {
-    let containerOptions = document.getElementById("options");
-    containerOptions.innerHTML = "";
+//Mostrar todos los pokemon
+const showAllPokemon = async () => {
+  const pokemonList = await loadBasicPokemonDataFromList();
+  const pokemonListFullData = await loadAllPokemonDataFromList(pokemonList);
 
-    i=0;
-    loadTypeData().forEach(typeElem=>{
-        if(i%7==0){
-            containerOptions.appendChild(document.createElement("br"));
-        }
-        let linked = document.createElement("button");
-        linked.textContent = typeElem;
-        linked.addEventListener("click", () => showAllFromType(typeElem));
-        containerOptions.appendChild(linked);
+  let containerOptions = document.getElementById("options");
+  containerOptions.innerHTML = "";
+
+  let pokedex = document.getElementById("pokedex");
+  pokedex.innerHTML = "";
+
+  let title = document.getElementById("title-type");
+  title.textContent = "ALL POKEMON";
+
+  pokemonListFullData.forEach((pokemon) => {
+    let card = createCard(pokemon);
+    pokedex.appendChild(card);
+  });
+
+  showButton("");
+};
+
+//Mostrar los pokemon solo de un tipo
+const showAllFromType = async (type) => {
+  let containerOptions = document.getElementById("options");
+  containerOptions.innerHTML = "";
+  console.log("Buscar por tipo");
+
+  let pokedex = document.getElementById("pokedex");
+  pokedex.innerHTML = "";
+  let title = document.getElementById("title-type");
+  title.textContent = type.toUpperCase();
+
+  i = 0;
+  do {
+    const pokemonList = await loadBasicPokemonDataFromList();
+    const pokemonListFullData = await loadOneTypePokemonDataFromList(
+      pokemonList,
+      type
+    );
+
+    pokemonListFullData.forEach((pokemon) => {
+      let card = createCard(pokemon);
+      pokedex.appendChild(card);
+      i++;
+    });
+    urlListPokemon = urlNextPage;
+  } while (urlNextPage != null && i < 20);
+  showButton(type);
+};
+
+//Mostrar los pokemon que empiecen por una cadena
+const showFilteredPokemon = async () => {
+  let pokedex = document.getElementById("pokedex");
+  pokedex.innerHTML = "";
+
+  let result = document.getElementById("pokemon").value.toLowerCase();
+  i = 0;
+  do {
+    const data = await loadBasicPokemonDataFromList();
+
+    data.forEach(async (pokemon) => {
+      if (pokemon.name.startsWith(result)) {
+        const pokemonObj = await loadOnePokemonData(pokemon.name, pokemon.url);
+        const card = createCard(pokemonObj);
+        pokedex.appendChild(card);
         i++;
-    })
-}
+      }
+    });
+    urlListPokemon = urlNextPage;
+  } while (urlNextPage != null && i < 14);
+  document.getElementById("pokemon").value = "";
+};
 
-//Input para buscar un tipo
-function findTypes() {
-    let containerOptions = document.getElementById("options");
-    containerOptions.innerHTML = "";
-    let data = document.getElementById("type").value.toLowerCase();
-    console.log(data);
-    i=0;
-    types.forEach(typeElem=>{
-        if(i%7==0 && i!=0){
-            containerOptions.appendChild(document.createElement("br"));
-        }
-        if (typeElem.startsWith(data)) {
-            let linked = document.createElement("button");
-            linked.textContent = typeElem;
-            linked.addEventListener("click", () => showAllFromType(typeElem));
-            containerOptions.appendChild(linked);
-            i++;
-        }
-    })
-}
-
-//Crear filas con los pokemon solo de un tipo
-async function showAllFromType(type) {
-    let containerOptions = document.getElementById("options");
-    containerOptions.innerHTML = "";
-    console.log("Buscar por tipo")
-
-    let landing = document.getElementById("landing");
-    landing.innerHTML = "";
-    let title = document.createElement("h2");
-    title.textContent = type.toUpperCase();
-    landing.appendChild(title);
-
-    //Cargar todos los pokemon
-    pokemonList=[];
-    await listPokemon.forEach(function (pokemonurl,i){
-        loadListPokemonData(i);
-    })
-    
-    //Filtrar por el tipo --no funciona el filtrado
-    let pokemonListType =[];
-    /*pokemonListType = pokemonObjList.filter(pokemon => {
-        return pokemon.types[0].type.name == type;
-    });*/
-    
-    console.log(pokemonList);
-    await pokemonObjList.forEach((pokemon)=>{
-        let type =pokemon.types;
-        console.log(type);
-        type.forEach(slot=>{
-            if(slot.type.name==type){
-                pokemonListType.push(pokemon);
-            }
-        })
-    })
-
-    
-    let i = 0;
-    let num = 0;
-    setTimeout(async function (){
-        await pokemonListType.forEach(pokemon=>{
-            if(i%5==0 && i!=0){
-                num++;
-            }
-            createRow(pokemon,num,type);
-            i++;
-        })
-    },1000);
-}

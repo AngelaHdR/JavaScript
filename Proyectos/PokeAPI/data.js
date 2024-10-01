@@ -5,14 +5,12 @@ const {propiedad} = data.json() --> recoje los datos que estan en el campo deter
 en una variable de su mismo nombre */
 
 let pag = 0;
-const urlListPokemon = [
-  "https://pokeapi.co/api/v2/pokemon?offset=0&limit=30",
-  "https://pokeapi.co/api/v2/pokemon?offset=30&limit=30",
-  "https://pokeapi.co/api/v2/pokemon?offset=60&limit=30",
-  "https://pokeapi.co/api/v2/pokemon?offset=90&limit=30",
-];
 const urlType = "https://pokeapi.co/api/v2/type?offset=0&limit=21";
+let urlListPokemon = "https://pokeapi.co/api/v2/pokemon";
+let urlNextPage = null;
+let urlPreviousPage = null;
 
+//Cargar los tipos de pokemon que existen
 const loadTypeData = async () => {
   try {
     const data = await fetch(urlType);
@@ -23,27 +21,46 @@ const loadTypeData = async () => {
   }
 };
 
-const loadListPokemonData = async (pag) => {
+//Cargar nombre y url de un listado de pokemon
+const loadBasicPokemonDataFromList = async () => {
   try {
-    const respuesta = await fetch(urlListPokemon[pag]);
-    const { results } = await respuesta.json();
+    const respuesta = await fetch(urlListPokemon);
+    const { results, next, previous } = await respuesta.json();
+    urlNextPage = next;
+    urlPreviousPage = previous;
     return results;
   } catch (error) {
     console.log("Error al cargar la lista de pokemon" + error);
   }
 };
 
-const loadpokemonDataFromList = async (pokemonList) => {
+//Crear cartas para todos los pokemon
+const loadAllPokemonDataFromList = async (pokemonList) => {
   let _pokemonList = [];
-  await pokemonList.forEach(async (pokemon) => {
-    const pokemonData = await loadOnePokemonData(pokemon.name, pokemon.url);
-    _pokemonList.push(pokemonData);
-  });
+  for (const pokemon of pokemonList) {
+    let pokemonObj = await loadOnePokemonData(pokemon.name, pokemon.url);
+    _pokemonList.push(pokemonObj);
+  }
   return sortPokedex(_pokemonList);
 };
 
+//Crear cartas para los pokemon solo de un tipo
+const loadOneTypePokemonDataFromList = async (pokemonList, type) => {
+  let _pokemonListType = [];
+  for (const pokemon of pokemonList) {
+    let pokemonObj = await loadOnePokemonData(pokemon.name, pokemon.url);
+    for (const typeElem of pokemonObj.types) {
+      if (typeElem.type.name == type) {
+        _pokemonListType.push(pokemonObj);
+      }
+    }
+  }
+  //console.log(_pokemonListType);
+  return sortPokedex(_pokemonListType);
+};
+
 //Cargar los detalles de un pokemon segun su nombre y enlace
-async function loadOnePokemonData(name, url) {
+const loadOnePokemonData = async (name, url) => {
   try {
     const respuesta = await fetch(url);
     const data = await respuesta.json();
@@ -63,40 +80,8 @@ async function loadOnePokemonData(name, url) {
   } catch (error) {
     console.log("Error al cargar un pokemon" + error);
   }
-}
+};
 
 const sortPokedex = (pokemonList) => {
   return pokemonList.sort((pokemon1, pokemon2) => pokemon1.id - pokemon2.id);
 };
-
-//Botones para cambiar de pagina, solo funcionan en la opcion de busqueda general
-function previousPage() {
-  pag--;
-  document.getElementById("landing").innerHTML = "";
-  showAllPokemon();
-  showButton();
-}
-
-function nextPage() {
-  pag++;
-  document.getElementById("landing").innerHTML = "";
-  showAllPokemon();
-  showButton();
-}
-
-function showButton() {
-  let buttonPrevious = document.getElementById("previous");
-  let buttonNext = document.getElementById("next");
-  //Quitar el boton de anterior en la primera pagina
-  if (pag == 0) {
-    buttonPrevious.style.display = "none";
-  } else {
-    buttonPrevious.style.display = "block";
-  }
-  //Quitar el boton de siguiente en la ultima pagina
-  if (pag == urlListPokemon.length - 1) {
-    buttonNext.style.display = "none";
-  } else {
-    buttonNext.style.display = "block";
-  }
-}
