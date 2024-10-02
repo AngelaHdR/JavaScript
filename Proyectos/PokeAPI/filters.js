@@ -17,7 +17,7 @@ const showAllPokemon = async () => {
     pokedex.appendChild(card);
   });
 
-  showButton("");
+  selectPaginacion("all");
 };
 
 //Mostrar los pokemon solo de un tipo
@@ -30,23 +30,22 @@ const showAllFromType = async (type) => {
   pokedex.innerHTML = "";
   let title = document.getElementById("title-type");
   title.textContent = type.toUpperCase();
-
-  i = 0;
+  let pokemonListFullData = "";
   do {
     const pokemonList = await loadBasicPokemonDataFromList();
-    const pokemonListFullData = await loadOneTypePokemonDataFromList(
+    pokemonListFullData = await loadOneTypePokemonDataFromList(
       pokemonList,
       type
     );
+    console.log(pokemonListFullData)
+    inicio = urlNextPage;
+  } while (pokemonListFullData.length == 0);
 
-    pokemonListFullData.forEach((pokemon) => {
-      let card = createCard(pokemon);
-      pokedex.appendChild(card);
-      i++;
-    });
-    urlListPokemon = urlNextPage;
-  } while (urlNextPage != null && i < 20);
-  showButton(type);
+  pokemonListFullData.forEach((pokemon) => {
+    let card = createCard(pokemon);
+    pokedex.appendChild(card);
+  });
+  selectPaginacion(type);
 };
 
 //Mostrar los pokemon que empiecen por una cadena
@@ -55,20 +54,24 @@ const showFilteredPokemon = async () => {
   pokedex.innerHTML = "";
 
   let result = document.getElementById("pokemon").value.toLowerCase();
-  i = 0;
+  let data = "";
+  let pokemonNameList = [];
   do {
-    const data = await loadBasicPokemonDataFromList();
+    data = await loadBasicPokemonDataFromList();
 
     data.forEach(async (pokemon) => {
       if (pokemon.name.startsWith(result)) {
         const pokemonObj = await loadOnePokemonData(pokemon.name, pokemon.url);
-        const card = createCard(pokemonObj);
-        pokedex.appendChild(card);
-        i++;
+        pokemonNameList.push(pokemonObj)
       }
     });
-    urlListPokemon = urlNextPage;
-  } while (urlNextPage != null && i < 14);
-  document.getElementById("pokemon").value = "";
-};
+    inicio = urlNextPage;
+  } while ( pokemonNameList.length == 0 );
 
+  pokemonNameList.forEach((pokemon) => {
+    let card = createCard(pokemon);
+    pokedex.appendChild(card);
+  });
+  selectPaginacion();
+  //document.getElementById("pokemon").value = "";
+};

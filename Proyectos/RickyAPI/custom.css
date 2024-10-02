@@ -1,0 +1,14 @@
+*{
+    --color1: rgba(194, 255, 252, 0.8);
+    --color2: rgba(103, 177, 238, 0.8);
+    --color3: rgba(146, 167, 199, 0.8);
+    --color-fondo: rgba(235, 248, 248, 0.3);
+}
+
+.fondo{
+    height: 300px;
+    width:300px;
+    background: linear-gradient(135deg, var(--color1),var(--color2),var(--color3));
+    background-blend-mode: multiply;
+    background-color: var(--color-fondo);
+}

@@ -1,40 +1,61 @@
-//Botones para cambiar de pagina, solo funcionan en la opcion de busqueda general
-const previousPage = (filter) => {
-  urlListPokemon = urlPreviousPage;
+let type = "";
+
+//Pasar pagina en la vista general
+const previousPageAll = () => {
+  inicio = urlPreviousPage;
   document.getElementById("pokedex").innerHTML = "";
-  if (filter == "") {
-    showAllPokemon();
-  } else {
-    showAllFromType(filter);
-  }
+  showAllPokemon();
 };
 
-const nextPage = (filter) => {
-  urlListPokemon = urlNextPage;
+const nextPageAll = () => {
+  inicio = urlNextPage;
   document.getElementById("pokedex").innerHTML = "";
-  if (filter == "") {
-    showAllPokemon();
-  } else {
-    showAllFromType(filter);
-  }
+  showAllPokemon();
 };
 
-const showButton = (filter) => {
-  let buttonPrevious = document.getElementById("previous");
-  let buttonNext = document.getElementById("next");
-  
-  buttonNext.addEventListener("click", ()=>nextPage(filter));
-  buttonPrevious.setAttribute("click", ()=>previousPage(filter));
+//Pasar pagina con el filtro de tipos
+const previousPageTypes = () => {
+  inicio = urlPreviousPage;
+  document.getElementById("pokedex").innerHTML = "";
+  showAllFromType(type);
+};
+
+const nextPageTypes = () => {
+  inicio = urlNextPage;
+  document.getElementById("pokedex").innerHTML = "";
+  showAllFromType(type);
+};
+
+const showButton = (nombre) => {
+  let buttonPrevious = document.getElementById("previous-" + nombre);
+  let buttonNext = document.getElementById("next-" + nombre);
+
   //Quitar el boton de anterior en la primera pagina
   if (urlPreviousPage == null) {
     buttonPrevious.style.display = "none";
   } else {
-    buttonPrevious.style.display = "block";
+    buttonPrevious.style.display = "flex";
   }
   //Quitar el boton de siguiente en la ultima pagina
   if (urlNextPage == null) {
     buttonNext.style.display = "none";
   } else {
-    buttonNext.style.display = "block";
+    buttonNext.style.display = "flex";
+  }
+};
+
+const selectPaginacion = (_type) => {
+  let paginacionTipos = document.getElementById("paginacion-types");
+  let paginacionTodos = document.getElementById("paginacion-all");
+
+  if (_type == "all") {
+    paginacionTodos.style.display = "flex";
+    paginacionTipos.style.display = "none";
+    showButton("all");
+  } else {
+    paginacionTodos.style.display = "none";
+    paginacionTipos.style.display = "flex";
+    type = _type;
+    showButton("types");
   }
 };

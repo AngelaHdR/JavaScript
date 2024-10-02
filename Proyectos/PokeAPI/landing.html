@@ -9,17 +9,6 @@
   <body>
     <header>
       <h1 class="title-section">Pokemon Primera Generacion</h1>
-      <!--<div class="menu menu--principal flex flex--horizontal"></div>
-        <button onclick="showAllPokemon()" class="boton boton-principal">
-          Todos los pokemon
-        </button>
-        <button onclick="menuTypes()" class="boton boton-secundario">
-          Buscar por Tipo
-        </button>
-        <button onclick="menuNamePokemon()" class="boton boton-secundario">
-          Buscar por Nombre
-        </button>
-    </div>-->
     </header>
 
     <div class="menu menu--principal flex flex--horizontal">
@@ -52,11 +41,18 @@
       <div id="pokedex" class="pokedex"></div>
     </div>
 
-    <div class="menu flex flex--nowrap">
-      <button id="previous" class="boton boton-optional">
+    <div class="menu flex flex--nowrap flex--horizontal" id="paginacion-types">
+      <button id="previous-types" onclick="previousPageTypes()" class="boton boton-optional">
         Pagina anterior
       </button>
-      <button id="next" class="boton boton-optional">Pagina siguiente</button>
+      <button id="next-types" onclick="nextPageTypes()" class="boton boton-optional">Pagina siguiente</button>
+    </div>
+
+    <div class="menu flex flex--nowrap flex--horizontal" id="paginacion-all">
+      <button id="previous-all" onclick="previousPageAll()" class="boton boton-optional">
+        Pagina anterior
+      </button>
+      <button id="next-all" onclick="nextPageAll()" class="boton boton-optional">Pagina siguiente</button>
     </div>
 
     <script src="pokemonLayout.js"></script>

@@ -5,15 +5,16 @@ const {propiedad} = data.json() --> recoje los datos que estan en el campo deter
 en una variable de su mismo nombre */
 
 let pag = 0;
-const urlType = "https://pokeapi.co/api/v2/type?offset=0&limit=21";
+const urlType = "https://pokeapi.co/api/v2/type";
 let urlListPokemon = "https://pokeapi.co/api/v2/pokemon";
+let inicio = 0;
 let urlNextPage = null;
 let urlPreviousPage = null;
 
 //Cargar los tipos de pokemon que existen
 const loadTypeData = async () => {
   try {
-    const data = await fetch(urlType);
+    const data = await fetch(urlType+"?offset=0&limit=21");
     const { results } = await data.json();
     return results;
   } catch (error) {
@@ -24,15 +25,29 @@ const loadTypeData = async () => {
 //Cargar nombre y url de un listado de pokemon
 const loadBasicPokemonDataFromList = async () => {
   try {
-    const respuesta = await fetch(urlListPokemon);
-    const { results, next, previous } = await respuesta.json();
-    urlNextPage = next;
-    urlPreviousPage = previous;
+    let _urlListPokemon = urlListPokemon+"?offset="+inicio+"&limit=20";
+    const respuesta = await fetch(_urlListPokemon);
+    const { results, count } = await respuesta.json();
+    paginacion(count);
     return results;
   } catch (error) {
     console.log("Error al cargar la lista de pokemon" + error);
   }
 };
+
+//Pasar de pagina
+const paginacion = (count) => {
+  if(inicio+20<count){
+    urlNextPage = inicio+20;
+  }else{
+    urlNextPage = null;
+  }
+  if(inicio-20>=0){
+    urlPreviousPage = inicio-20;
+  }else{
+    urlPreviousPage = null;
+  }
+}
 
 //Crear cartas para todos los pokemon
 const loadAllPokemonDataFromList = async (pokemonList) => {
