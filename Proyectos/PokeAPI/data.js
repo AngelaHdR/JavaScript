@@ -14,7 +14,7 @@ let urlPreviousPage = null;
 //Cargar los tipos de pokemon que existen
 const loadTypeData = async () => {
   try {
-    const data = await fetch(urlType+"?offset=0&limit=21");
+    const data = await fetch(urlType + "?offset=0&limit=21");
     const { results } = await data.json();
     return results;
   } catch (error) {
@@ -22,10 +22,20 @@ const loadTypeData = async () => {
   }
 };
 
+//Cargar los pokemon de un solo tipo
+const loadPokemonFromType = (name) => {
+  axios.get(urlType + "/" + name)
+    .then(results => {
+      const {data} = results;
+      return data.pokemon;
+    })
+    .catch();
+};
+
 //Cargar nombre y url de un listado de pokemon
 const loadBasicPokemonDataFromList = async () => {
   try {
-    let _urlListPokemon = urlListPokemon+"?offset="+inicio+"&limit=20";
+    let _urlListPokemon = urlListPokemon + "?offset=" + inicio + "&limit=20";
     const respuesta = await fetch(_urlListPokemon);
     const { results, count } = await respuesta.json();
     paginacion(count);
@@ -34,20 +44,6 @@ const loadBasicPokemonDataFromList = async () => {
     console.log("Error al cargar la lista de pokemon" + error);
   }
 };
-
-//Pasar de pagina
-const paginacion = (count) => {
-  if(inicio+20<count){
-    urlNextPage = inicio+20;
-  }else{
-    urlNextPage = null;
-  }
-  if(inicio-20>=0){
-    urlPreviousPage = inicio-20;
-  }else{
-    urlPreviousPage = null;
-  }
-}
 
 //Crear cartas para todos los pokemon
 const loadAllPokemonDataFromList = async (pokemonList) => {
@@ -79,7 +75,7 @@ const loadOnePokemonData = async (name, url) => {
   try {
     const respuesta = await fetch(url);
     const data = await respuesta.json();
-    const { id, types, sprites, stats } = data;
+    const { id, types, sprites, stats, abilities } = data;
     const pokemonObj = new Pokemon(
       name,
       url,
@@ -88,7 +84,8 @@ const loadOnePokemonData = async (name, url) => {
       sprites.front_default,
       stats[0].base_stat,
       stats[1].base_stat,
-      stats[2].base_stat
+      stats[2].base_stat,
+      abilities
     );
 
     return pokemonObj;

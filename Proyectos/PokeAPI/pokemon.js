@@ -7,8 +7,9 @@ class Pokemon {
   hp = 0;
   attack = 0;
   defense = 0;
+  abilities = "";
 
-  constructor(name, url, id, types, image, hp, attack, defense) {
+  constructor(name, url, id, types, image, hp, attack, defense, abilities) {
     (this.name = name),
       (this.url = url),
       (this.id = id),
@@ -17,5 +18,6 @@ class Pokemon {
       (this.hp = hp),
       (this.attack = attack),
       (this.defense = defense);
+      (this.abilities = abilities)
   }
 }

@@ -1,5 +1,19 @@
 let type = "";
 
+//Pasar de pagina
+const paginacion = (count) => {
+  if(inicio+20<count){
+    urlNextPage = inicio+20;
+  }else{
+    urlNextPage = null;
+  }
+  if(inicio-20>=0){
+    urlPreviousPage = inicio-20;
+  }else{
+    urlPreviousPage = null;
+  }
+}
+
 //Pasar pagina en la vista general
 const previousPageAll = () => {
   inicio = urlPreviousPage;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="custom.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Pokemon</title>
   </head>
   <body>
@@ -41,6 +42,12 @@
       <div id="pokedex" class="pokedex"></div>
     </div>
 
+    <div class="modal" id="modal">
+      <div class="modal-inner card" id="cardExpansion">
+
+      </div>
+    </div>
+
     <div class="menu flex flex--nowrap flex--horizontal" id="paginacion-types">
       <button id="previous-types" onclick="previousPageTypes()" class="boton boton-optional">
         Pagina anterior
@@ -59,6 +66,6 @@
     <script src="Pokemon.js"></script>
     <script src="data.js"></script>
     <script src="filters.js"></script>
-    <script src="botones.js"></script>
+    <script src="paginacion.js"></script>
   </body>
 </html>
