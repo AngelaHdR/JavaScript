@@ -81,7 +81,7 @@ const createCardExpansion = (pokemon) => {
 
   let attackBar = document.createElement("div");
   attackBar.setAttribute("id", "attackBar");
-  attackBar.textContent = "Ataque";
+  attackBar.textContent = "Attack";
   attackProgress.appendChild(attackBar);
   
   
@@ -90,12 +90,12 @@ const createCardExpansion = (pokemon) => {
 
   let defenseBar = document.createElement("div");
   defenseBar.setAttribute("id","defenseBar");
-  defenseBar.textContent = "Defensa";
+  defenseBar.textContent = "Defense";
 
   defenseProgress.appendChild(defenseBar);
   
   let abilities = document.createElement("ul");
-  abilities.textContent = "Abilidades: ";
+  abilities.textContent = "Abilities: ";
   for (slot of pokemon.abilities) {
     let _ability = document.createElement("li");
     _ability.textContent = slot.ability.name;
@@ -107,13 +107,15 @@ const createCardExpansion = (pokemon) => {
   closeButton.addEventListener("click", () => {
     modal.classList.remove("open");
   });
-  closeButton.textContent = "Cerrar";
+  closeButton.className = "typeContainer boton boton-principal";
+  closeButton.textContent = "X";
 
   card.appendChild(attackProgress);
   card.appendChild(defenseProgress);
   card.appendChild(abilities);
-  cardExpansion.appendChild(card);
   cardExpansion.appendChild(closeButton);
+  cardExpansion.appendChild(card);
+  
   
   moveProgressBar("attackBar",pokemon.attack);
   moveProgressBar("defenseBar",pokemon.defense);

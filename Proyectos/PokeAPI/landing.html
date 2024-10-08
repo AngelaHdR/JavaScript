@@ -9,28 +9,28 @@
   </head>
   <body>
     <header>
-      <h1 class="title-section">Pokemon Primera Generacion</h1>
+      <h1 class="title-section">Pokemon First Generation</h1>
     </header>
 
     <div class="menu menu--principal flex flex--horizontal">
       <div class="menu flex flex--vertical">
-        <button onclick="showAllPokemon()" class="boton boton-principal">
-          Generar cartas
+        <button onclick="showAllPokemon()" class="boton">
+          Generate cards
         </button>
-        <button onclick="findTypes()" class="boton boton-principal">
-          Listar tipos
-        </button>
-      </div>
-      <div class="menu flex flex--vertical">
-        <input type="text" id="type" placeholder="Introduce un tipo" />
-        <button onclick="findTypes()" class="boton boton-secundario">
-          Buscar Tipo
+        <button onclick="findTypes()" class="boton">
+          List types
         </button>
       </div>
       <div class="menu flex flex--vertical">
-        <input type="text" id="pokemon" placeholder="Introduce un pokemon" />
-        <button onclick="showFilteredPokemon()" class="boton boton-secundario">
-          Buscar Pokemon
+        <input type="text" id="type" placeholder="Introduce type" />
+        <button onclick="findTypes()" class="boton">
+          Find Type
+        </button>
+      </div>
+      <div class="menu flex flex--vertical">
+        <input type="text" id="pokemon" placeholder="Introduce pokemon name" />
+        <button onclick="showFilteredPokemon()" class="boton">
+          Find Pokemon
         </button>
       </div>
     </div>
@@ -43,23 +43,23 @@
     </div>
 
     <div class="modal" id="modal">
-      <div class="modal-inner card" id="cardExpansion">
+      <div class="modal-inner" id="cardExpansion">
 
       </div>
     </div>
 
     <div class="menu flex flex--nowrap flex--horizontal" id="paginacion-types">
       <button id="previous-types" onclick="previousPageTypes()" class="boton boton-optional">
-        Pagina anterior
+        Previous page
       </button>
-      <button id="next-types" onclick="nextPageTypes()" class="boton boton-optional">Pagina siguiente</button>
+      <button id="next-types" onclick="nextPageTypes()" class="boton boton-optional">Next page</button>
     </div>
 
     <div class="menu flex flex--nowrap flex--horizontal" id="paginacion-all">
       <button id="previous-all" onclick="previousPageAll()" class="boton boton-optional">
-        Pagina anterior
+        Previous page
       </button>
-      <button id="next-all" onclick="nextPageAll()" class="boton boton-optional">Pagina siguiente</button>
+      <button id="next-all" onclick="nextPageAll()" class="boton boton-optional">Next page</button>
     </div>
 
     <script src="pokemonLayout.js"></script>
