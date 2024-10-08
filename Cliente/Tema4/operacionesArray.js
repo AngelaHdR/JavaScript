@@ -21,7 +21,10 @@ const sumaNumeros = () => {
     initial
   );
   console.log(suma);
-  return suma;
+  document.getElementById("resultadoSuma").textContent = suma;
 };
 
-sumaNumeros();
+const ordenarNum = () => {
+  miArray.sort((a, b) => a - b);
+  console.log(miArray);
+};

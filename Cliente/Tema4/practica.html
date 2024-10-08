@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alumnado</title>
+  </head>
+  <body>
+    <div>
+      <h2>Arrays de Objetos</h2>
+      <input type="text" placeholder="Nombre de alumno" id="nombreAlumno" />
+      <button onclick="notasAlumno()">Notas de un alumno</button>
+      <button onclick="borraAlumno()">Borrar alumno</button>
+      <br />
+    </div>
+    <br />
+    <div>
+      <input type="text" placeholder="Nombre de ciudad" id="nombreCiudad" />
+      <button onclick="alumnosCiudad()">Buscar alumnos de una ciudad</button>
+
+      <input type="text" placeholder="Numero de curso" id="numeroCurso" />
+      <button onclick="alumnosCurso()">Buscar alumnos de un curso</button>
+    </div>
+    <br />
+    <div>
+      <button onclick="subeUnPunto()">Subir un punto en cada asignatura</button>
+      <button onclick="ordenaEdad()">Ordenar alumnos por edad</button>
+      <button onclick="ordenaNombreAsc()">
+        Ordenar alumnos por nombre ascendente
+      </button>
+      <button onclick="ordenaNombreDesc()">
+        Ordenar alumnos por nombre descendente
+      </button>
+      <br />
+    </div>
+    <br />
+    <div>
+      <input type="text" placeholder="Numero de curso" id="nuevoCurso" />
+      <input type="text" placeholder="Nombre de alumno" id="nuevoNombre" />
+      <input type="text" placeholder="Edad de alumno" id="nuevaEdad" />
+      <input type="text" placeholder="Ciudad" id="nuevaCiudad" />
+      <button onclick="nuevoAlumno()">Nuevo alumno</button>
+    </div>
+    <br />
+    <div>
+      <input type="text" placeholder="Nombre de alumno" id="buscarNombre" />
+      <input
+        type="text"
+        placeholder="Nombre de asignatura"
+        id="nuevaAsignatura"
+      />
+      <input type="text" placeholder="Nota de asignatura" id="nuevaNota" />
+      <button onclick="nuevaAsignatura()">Nueva asignatura</button>
+    </div>
+  </body>
+  <script src="alumnado.js"></script>
+</html>

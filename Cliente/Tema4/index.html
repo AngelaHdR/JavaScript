@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="custom.css">
+    <title>Index tema 4</title>
+  </head>
+  <body>
+    
+    <div class="bg-primary">
+      <h1>Busqueda de alumnos</h1>
+      <div class="nav nav-primary">
+        <button class="btn btn-info" onclick="mostrarAlumnos()">
+          Mostrar Alumnos
+        </button>
+        <button class="btn btn-info" onclick="buscarAlumno()">
+          Buscar Alumno
+        </button>
+        <button class="btn btn-success" onclick="addAlumno()">
+          Añadir Alumno
+        </button>
+        <button class="btn btn-danger" onclick="borrarAlumno()">
+          Borrar Alumno
+        </button>
+      </div>
+      <div id="listaAlumnos"></div>
+    </div>
+
+    <br /><br /><br />
+
+    <div class="bg-secondary">
+      <h1>Comparador de fechas</h1>
+      <input type="text" placeholder="Ingresa una fecha" id="fecha1" />
+      <input type="text" placeholder="Ingresa una fecha" id="fecha2" />
+      <button class="btn btn-primary" onclick="leerFechas()">
+        Comparar fechas
+      </button>
+      <h3 id="fechaMayor"></h3>
+      <h6 id="fechaMenor"></h6>
+    </div>
+
+    <br /><br /><br />
+
+    <div class="bg-warning">
+      <button onclick="sumaNumeros()">Sumar numeros</button>
+      <h2 id="resultadoSuma"></h2>
+    </div>
+
+    <div class="fondo"></div>
+  </body>
+  <script src="alumnos.js"></script>
+  <script src="operacionesArray.js"></script>
+  <script src="fechas.js"></script>
+</html>

@@ -1,0 +1,9 @@
+.fondo{
+    width:100px;
+    height: 100px;
+    background: linear-gradient(130deg,
+    rgba(104, 140, 222, 0.8),rgba(64, 180, 212, 0.8),rgba(170, 203, 231, 0.8),
+    rgba(110, 185, 239, 0.8),rgba(78, 129, 216, 0.8),rgba(70, 179, 209, 0.8));
+    background-color: rgb(215, 240, 250);
+    background-blend-mode:multiply;
+}
