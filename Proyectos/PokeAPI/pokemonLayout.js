@@ -26,8 +26,7 @@ const createCard = (pokemon) => {
     _type.className = "type_img";
     typeContainer.appendChild(_type);
   }
-  imageContainer.appendChild(typeContainer);
-  imageContainer.appendChild(image);
+  imageContainer.append(typeContainer,image);
 
   if (pokemon.types[0].type.name == "normal" && pokemon.types.length > 1) {
     card.className = "col card " + pokemon.types[1].type.name;
@@ -39,8 +38,7 @@ const createCard = (pokemon) => {
   name.setAttribute("id", "pokemon" + pokemon.name);
   name.textContent = pokemon.name.toUpperCase();
 
-  card.appendChild(imageContainer);
-  card.appendChild(name);
+  card.append(imageContainer,name);
 
   return card;
 };
@@ -110,12 +108,8 @@ const createCardExpansion = (pokemon) => {
   closeButton.className = "typeContainer boton boton-principal";
   closeButton.textContent = "X";
 
-  card.appendChild(attackProgress);
-  card.appendChild(defenseProgress);
-  card.appendChild(abilities);
-  cardExpansion.appendChild(closeButton);
-  cardExpansion.appendChild(card);
-  
+  card.append(attackProgress,defenseProgress,abilities);
+  cardExpansion.append(closeButton,card);
   
   moveProgressBar("attackBar",pokemon.attack);
   moveProgressBar("defenseBar",pokemon.defense);

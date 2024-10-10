@@ -208,7 +208,8 @@ li {
   --color-type: var(--color-grass);
 }
 .ice,
-.water {
+.water,
+.flying {
   --color-type: var(--color-water);
 }
 .rock,
