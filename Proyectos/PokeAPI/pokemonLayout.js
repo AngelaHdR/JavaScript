@@ -67,8 +67,8 @@ const findTypes = async () => {
 };
 
 const createCardExpansion = (pokemon) => {
-  let modal = document.getElementById("modal");
-  modal.classList.add("open");
+  let dialog = document.getElementById("oneCard");
+  dialog.showModal();
   let cardExpansion = document.getElementById("cardExpansion");
   cardExpansion.innerHTML = "";
 
@@ -101,9 +101,9 @@ const createCardExpansion = (pokemon) => {
   }
 
   let closeButton = document.createElement("button");
-  closeButton.setAttribute("id", "closeModal");
   closeButton.addEventListener("click", () => {
-    modal.classList.remove("open");
+    dialog.close()
+    cardExpansion.innerHTML="";
   });
   closeButton.className = "typeContainer boton boton-principal";
   closeButton.textContent = "X";
